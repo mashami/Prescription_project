@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>doctor form</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        img {
+            border-radius: 20%;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+
+        }
+
+        .table-container {
+            padding: 0 10%;
+            margin: 40px auto 0;
+        }
+
+        .heading {
+            font-size: 40px;
+            text-align: center;
+            color: black;
+            margin-bottom: 40px;
+
+        }
+
+        .table {
+            width: 100%;
+            border-collapse: collapse;
+
+        }
+
+        .table thead {
+            background-color: aquamarine;
+        }
+
+        .table thead tr th {
+            font-size: 14px;
+            font-weight: 600;
+            letter-spacing: 0.35px;
+            color: #ff7200;
+            opacity: 1;
+            padding: 12px;
+            vertical-align: top;
+            border: 1px solid #dee2e685;
+        }
+
+        .table tbody tr td {
+            font-size: 14px;
+            letter-spacing: 0.35px;
+            font-weight: normal;
+            color: #f1f1f1;
+            background-color: #3c3c;
+            padding: 8px;
+            text-align: center;
+            border: 1px solid #dee2e685;
+        }
+
+        .table tr input {
+            height: 25px;
+            width: 65px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="main">
+        <div class="navbar">
+            <div class="icon">
+                <h2 class="img">
+                    <img src="logo.png" alt="Avatar" style="width:80px">
+                </h2>
+            </div>
+            <div class="menu">
+                <ul>
+                    <li><a href="index.htm">HOME</a></li>
+                    <li><a href="about.html">ABOUT</a></li>
+                    <li><a href="#">SERVICE</a></li>
+                    <li><a href="#">CONTACT</a></li>
+                    <li><a href="create.html">SIGNUP</a></li>
+                </ul>
+
+            </div>
+        </div>
+        <div class="table-container">
+            <h1 class=" heading">PATIENT TABLE</h1>
+
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Date</th>
+                        <th>Doctor Name</th>
+                        <th>Medicines Name</th>
+                        <th>morning</th>
+                        <th>Noon</th>
+                        <th>evening</th>
+                        <th>Validation</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td contenteditable="false" data-label="Date" ></td>
+                        <td contenteditable="false" id="container" > </td>
+                        <td contenteditable="false" data-label="Medicines Name" id="container"></td>
+                        <td data-label="morning"><input type="checkbox" disabled></td>
+                        <td data-label="Noon"><input type="checkbox" disabled></td>
+                        <td data-label="evening"><input type="checkbox" disabled ></td>
+                        <td data-label="Validation"><input type="checkbox"disabled></td>
+                    </tr>
+                </tbody>
+
+               
+            </table>
+
+            
+
+
+        </div>
+
+        <script>
+            function disableCheckbox() {
+              document.getElementById('myCheckbox').disabled = true;
+            }
+          </script>
+
+<script>
+    function makeUneditable() {
+      document.getElementById('myCell').contentEditable = false;
+    }
+  </script>
+        <script>
+            // let doctor_name;
+            let table=document.getElementById('table');
+            let td = document.getElementById('Date');
+            async function getData() {
+                const response = await fetch('http://127.0.0.1:8000/pres/getpatient/1');
+                const data = await response.json();
+                console.log(data);
+                
+
+                td=console.log(data.DoctorName);
+                console.log(data.Date);
+                console.log(data.medicine);
+                // const td = document.createElement('td');
+                // td=data.DoctorName
+                // add the fetched data to the td element
+                // document.getElementById('rainbow').value = data.DoctorName;
+                
+                // const variable = document.getElementById('rainbow');
+                // variable.value = data.DoctorName;
+                // doctor_name = data.DoctorName;
+                // console.log(document.getElementById('rainbow'));
+            }
+
+            getData()
+
+             
+          
+
+
+
+            // async function getDataAndRender() {
+            //     const response = await fetch('http://localhost:8000/pres/pharmacist/1');
+            //     const data = await response.json();
+            //     let html = '';
+            //     data.forEach(item => {
+            //         html += `<td>${item.data}</td>`;
+            //     });
+            //     document.getElementById('container').innerHTML = html;
+            // }
+            // getDataAndRender()
+
+            const express = require('express');
+            const cors = require('cors');
+
+            const app = express();
+
+            app.use(cors());
+
+            app.get('/', (req, res) => {
+                res.send('Hello World');
+            });
+
+            app.listen(3000, () => {
+                console.log('Server listening on port 3000');
+            });
+
+            // const API_URL = 'http://localhost:8000/pres/doctor/';
+
+            // async function getData() {
+            //     try {
+            //         const response = await fetch(API_URL);
+            //         const data = await response.json();
+            //         console.log(data);  // Log the data to the console for debugging purposes
+            //         displayData(data);  // Call a function to display the data on the page
+            //     } catch (error) {
+            //         console.error(error);  // If there's an error, log it to the console
+            //     }
+            // }
+
+            // function displayData(data) {
+            //     const container = document.getElementById('rainbow');  // Get a reference to the element where you want to display the data
+            //     container.innerHTML = '';  // Clear any existing content
+
+            //     // Loop through the data and append each item to the container element
+            //     data.forEach(item => {
+            //         const p = document.createElement('p');
+            //         p.textContent = item;
+            //         container.appendChild(p);
+            //     });
+            // }
+
+            // getData();  // Call the getData() function to fetch and display the data
+
+
+        </script>
+</body>
+
+</html>

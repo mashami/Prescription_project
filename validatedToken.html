@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Prescription web</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        img {
+            border-radius: 20%;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="main">
+        <div class="navbar">
+            <div class="icon">
+                <h2 class="img">
+                    <img src="logo.png" alt="Avatar" style="width:80px">
+                </h2>
+            </div>
+            <div class="menu">
+                <ul>
+                    <li><a href="index.htm">HOME</a></li>
+                    <li><a href="about.html">ABOUT</a></li>
+                    <li><a href="#">SERVICE</a></li>
+                    <li><a href="#">CONTACT</a></li>
+                    <li><a href="create.html">SIGNUP</a></li>
+                </ul>
+
+            </div>
+        </div>
+
+
+        <center>
+            <p>past your token recieved from your Email here in field bellow<br>
+                The sytem will give you verification code to return back a form of creating <br>
+                a new password<br>
+            </p>
+            <form class="pass" name="myForm" action="index.htm" onsubmit="return(Validate())">
+
+                <input  name="text" placeholder="Enter your code">
+                <button class="btnn">Send</button>
+
+            </form>
+        </center>
+    </div>
+    <script>
+        function Validate() {
+
+            if (document.myForm.text.value == "") {
+                alert("please provide code here from your Email");
+                document.myForm.text.focus()
+                return false
+
+            } else {
+                alert("Check on your Email acount");
+                return true
+            }
+
+        }
+
+        Validate();
+
+    </script>
+
+</body>
+
+</html>

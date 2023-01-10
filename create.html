@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Prescription web</title>
+    <link rel="stylesheet" href="style1.css">
+    <style>
+        img {
+            border-radius: 20%;
+        }
+    </style>
+
+
+</head>
+
+<body>
+    <div class="main">
+        <div class="navbar">
+            <div class="icon">
+                <h2 class="img">
+                    <img src="logo.png" alt="Avatar" style="width:80px">
+                </h2>
+            </div>
+            <div class="menu">
+                <ul>
+                    <li><a href="index.htm">HOME</a></li>
+                    <li><a href="about.html">ABOUT</a></li>
+                    <li><a href="#">SERVICE</a></li>
+                    <li><a href="#">CONTACT</a></li>
+                    <!-- <li><a href="create.html">SIGNUP</a></li> -->
+
+                </ul>
+
+            </div>
+            <!-- <div class="search">
+                <a href="#"> <button class="btn">Search</button></a>
+                <input class="srch" type="search" name="" placeholder="Type To text">
+            </div> -->
+        </div>
+        <div class="content">
+            <h2><span> Prescription webApp</span></h2>
+            <p class="par">Prescription web App is web application that anable doctors or hospitals <br>
+                to prescribed a patient medicines online. <br>
+                This web application its very easier to use, very nice productive <br>and nice
+                functionalities. <br>
+                prescription webApp it is avoiding papers that you can loss easly. <br>
+                prescription WebApp is helping the pharmacy to accurately read the <br>prescriptions from
+                the doctors when dispensing the medicine to the patient. <br>
+
+
+                <button class="cn"><a href="#">JOIN US</a></button>
+                <br>
+                <br>
+                <b>
+                    <p> Life is irreplaceable 😉</p>
+                </b>
+            <form id="form" class="form" name="myForm" action="index.htm"  method="post" onsubmit="return(Validate())">
+                <input type="text" name="text1" placeholder="Enter your First name Here" id="firstName">
+                <input type="text" name="text2" placeholder="Enter your Larst name Here" id="lastName">
+                <input type="text" name="text3" placeholder="Enter User name Here" id="userName">
+                <input type="email" name="email" placeholder="Enter Email Here" id="email">
+                <input type="password" name="password1" placeholder="Enter Password Here" id="password">
+                <input type="password" name="confirm" placeholder="Enter confirm password Here" id="confirm">
+                <button class="btnn">Register</button>
+                <!-- <button value="#" onclick="validaEmail()"><b>Register</b> -->
+                <p class="liw"><b>Sign up with</b></p>
+
+                <div class="icons">
+                    <a href="#">
+                        <center><ion-icon name="logo-google"></ion-icon></center>
+                    </a>
+                </div>
+
+            </form>
+            <script>
+
+                const form = document.getElementById('form');
+                var fname=document.getElementById("firstName");
+                var lname=document.getElementById("lastName");
+                var username=document.getElementById("userName");
+                var email=document.getElementById("email");
+                var password=document.getElementById("password");
+                var Confirm = document.getElementById("confirm")
+                form.addEventListener('submit', (e) => {
+        
+                    e.preventDefault();
+                    Validate();
+                    sendDataToAPI();
+        
+                    window.location.href = '/home/mashami/Documents/Django/Web-Project/index.htm';
+                })
+        
+                const API_URL = 'http://127.0.0.1:8000/sign';
+        
+                async function sendDataToAPI() {
+                    const response = await fetch(API_URL, {
+                        method: 'POST',
+                        body: JSON.stringify({
+                            first_Name: fname.value,
+                            Last_Name: lname.value,
+                            User_name: username.value,
+                            email: email.value,//first email it's from API second from form html
+                            password: password.value,
+                            confirm_password: Confirm.value,
+                        }),
+                        headers: {
+                            'Content-Type': 'application/json'
+                        }
+                    });
+                    const data = await response.json();
+                    console.log(data);
+                }
+        
+        
+        
+        
+            </script>
+        </div>
+    </div>
+    </div>
+    </div>
+    
+    <script>
+
+        function validaEmail() {
+            var mail = document.getElementById("text1").value;
+            var regx = /^([a-zA-Z0-9\._]+)@([a-zA-Z0-9])+.([a-z]+)(.[a-z]+)?$/
+            // var regx =  /[\w][a-zA-Z0-9_\-\.]+[@][a-z]+[\.]+[a-z]{2,3}/
+
+            if (mail.match(regx)) {
+                document.myForm.email.focus()
+                return true
+            } else {
+                return false
+            }
+        }
+        function Validate() {
+
+            if (document.myForm.email.value == "") {
+                alert("please provide your Email ID");
+                document.myForm.email.focus()
+
+
+                return false
+
+            } else if (document.myForm.text1.value == "") {
+                alert("please provide First name.");
+                document.myForm.text1.focus();
+                return false
+
+
+            } else if (document.myForm.text2.value == "") {
+                alert("please provide your Last name");
+                document.myForm.text2.focus();
+                return false
+
+            }
+            else if (document.myForm.text3.value == "") {
+                alert("please provide your User name");
+                document.myForm.text3.focus();
+                return false
+            }
+            else if (document.myForm.password1.value == "") {
+                alert("please create password");
+                document.myForm.password1.focus();
+                return false
+            }
+            else if (document.myForm.confirm.value == "") {
+                alert("please Confirm password must be the same");
+                document.myForm.confirm.focus();
+                return false
+            }
+            else {
+                // alert("Thank you very much your message has been recieved!");
+                return true
+            }
+
+        }
+       
+
+    </script>
+
+    <script src="https://unpkg.com/ionicons@5.4.0/dist/ionicons.js"></script>
+</body>
+
+</html>

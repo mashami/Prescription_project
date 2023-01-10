@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Prescription web</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        img {
+            border-radius: 20%;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="main">
+        <div class="navbar">
+            <div class="icon">
+                <h2 class="img">
+                    <img src="logo.png" alt="Avatar" style="width:80px">
+                </h2>
+            </div>
+            <div class="menu">
+                <ul>
+                    <li><a href="index.htm">HOME</a></li>
+                    <li><a href="about.html">ABOUT</a></li>
+                    <li><a href="#">SERVICE</a></li>
+                    <li><a href="">CONTACT</a></li>
+                    <li><a href="create.html">SIGNUP</a></li>
+                </ul>
+
+            </div>
+        </div>
+
+
+        <center>
+            <p>Welcome<br>
+                
+            </p>
+            <form id="form" class="pass" name="myForm"  method="post">
+
+                <input name="text" placeholder="Enter Doctor's name" id="DoctorName">
+                <input name="text" placeholder="Enter Medicines" id="medicines">
+                <input name="text" placeholder="Enter Deseasis" id="deseasis">
+                <button class="btnn">Send</a></button>
+            </form>
+        </center>
+    </div>
+
+    <script>
+
+
+        const form = document.getElementById('form');
+        var DoctorName = document.getElementById("DoctorName");
+        var medicine = document.getElementById("medicines");
+        var deseasis = document.getElementById("deseasis")
+        form.addEventListener('submit', (e) => {
+
+            e.preventDefault();
+
+            sendDataToAPI();
+
+
+        })
+
+        const API_URL = 'http://127.0.0.1:8000/pres/doctor/';
+
+        async function sendDataToAPI() {
+            const response = await fetch(API_URL, {
+                method: 'POST',
+                body: JSON.stringify({
+                    DoctorName: DoctorName.value,
+                    medicine: medicine.value,
+                    Diseases: deseasis.value,
+
+
+                }),
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            });
+            const data = await response.json();
+            console.log(data);
+        }
+
+
+
+    </script>
+
+</body>
+
+</html>
